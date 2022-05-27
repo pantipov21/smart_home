@@ -1,0 +1,67 @@
+#Rest Client для Visual Studio не качал, увы - под линуксом не помню такую студию.
+#Да и зачем ? Нас же учили requests. Вот, применяя эту библиотеку запросы 
+#и сделал.
+#
+# ЗАДАНИЕ 1
+#    sensor = {'name':'sensor2','description':'text2'}
+#    r = requests.post('http://127.0.0.1:8000/api/create_sensor/',data = sensor)
+#
+# ЗАДАНИЕ 2
+#    sensor = {'description':'text1_11'}
+#    r = requests.patch('http://127.0.0.1:8000/api/update_sensor/1',data = sensor)
+#
+# ЗАДАНИЕ 3
+#    r = requests.get('http://127.0.0.1:8000/api/list_sensors/')
+#
+# ЗАДАНИЕ 4
+#    measurement = {'sensor_id':'1', 'temperature':'23'}
+#    r = requests.post('http://127.0.0.1:8000/api/add_temp/',data = measurement)
+#
+# ЗАДАНИЕ 5
+#    r = requests.get('http://127.0.0.1:8000/api/show/1/')
+#
+# примеры API-запросов
+
+@baseUrl = http://localhost:8000/api
+
+# получение датчиков
+GET {{baseUrl}}/sensors/
+Content-Type: application/json
+
+###
+
+# создание датчика
+POST {{baseUrl}}/sensors/
+Content-Type: application/json
+
+{
+  "name": "ESP32",
+  "description": "Датчик на кухне за холодильником"
+}
+
+###
+
+# обновление датчика
+PATCH {{baseUrl}}/sensors/1/
+Content-Type: application/json
+
+{
+  "description": "Перенес датчик на балкон"
+}
+
+###
+
+# добавление измерения
+POST {{baseUrl}}/measurements/
+Content-Type: application/json
+
+{
+  "sensor": 1,
+  "temperature": 22.3
+}
+
+###
+
+# получение информации по датчику
+GET {{baseUrl}}/sensors/1/
+Content-Type: application/json
